@@ -5,7 +5,6 @@ import { fetchRandomGreeting } from '../redux/slices/greetingsSlice';
 function Greeting() {
   const dispatch = useDispatch();
   const greeting = useSelector((state) => state.greetings.greeting);
-  console.log(greeting);
   useEffect(() => {
     dispatch(fetchRandomGreeting());
   }, [dispatch]);
