@@ -26,7 +26,8 @@
 
 # 📖 Hello React Front End <a name="about-project"></a>
 
-**hello-react-front-end** is an exercise at Microverse in preparation for our capstone project where we had a group of 4-5 students work as a team to develop a fullstack app using Rails on the backend and React on the front end. In the exercise we build a simple project with Rails on the backend and React as the frontend and we make a get call to the API exposed by the Rails from the React app
+**hello-react-front-end** is an exercise at Microverse in preparation for our capstone project where we had a group of 4-5 students work as a team to develop a fullstack app using Rails on the backend and React on the front end. In the exercise we build a simple project with Rails on the backend and React as the frontend and we make a get call to the API exposed by the Rails from the React app.
+Here is the repo to the [back-end](https://github.com/kkolade/hello-rails-back-end/pull/1)
 
 ## 🛠 Built With <a name="built-with"></a>
 
