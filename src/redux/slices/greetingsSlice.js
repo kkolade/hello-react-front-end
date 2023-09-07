@@ -1,27 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+export const fetchRandomGreeting = createAsyncThunk(
+  'greetings/fetchRandomGreeting',
+  async () => {
+    const response = await axios.get('http://localhost:3000/greetings/random');
+    console.log(response);
+    return response.data.greeting;
+  }
+);
 
 const greetingsSlice = createSlice({
   name: 'greetings',
   initialState: {
     greeting: '',
+    status: 'idle',
+    error: null,
   },
-  reducers: {
-    setGreeting: (state, action) => {
-      state.greeting = action.payload;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchRandomGreeting.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchRandomGreeting.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.greeting = action.payload;
+      })
+      .addCase(fetchRandomGreeting.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
   },
 });
-
-export const { setGreeting } = greetingsSlice.actions;
-
-export const fetchRandomGreeting = () => async (dispatch) => {
-  try {
-    const response = await axios.get('http://localhost:3000/greetings/random');
-    dispatch(setGreeting(response.data.greeting));
-  } catch (error) {
-    console.error('Error fetching random greeting:', error);
-  }
-};
 
 export default greetingsSlice.reducer;
